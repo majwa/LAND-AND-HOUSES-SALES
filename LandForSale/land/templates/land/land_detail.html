@@ -1,0 +1,22 @@
+<!-- land/templates/land/land_detail.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Land Details{% endblock %}
+
+{% block header %}Land Details{% endblock %}
+
+{% block content %}
+  <h2>{{ land.location }} Details</h2>
+  <p><strong>Location:</strong> {{ land.location }}</p>
+  <p><strong>Price:</strong> ${{ land.price }}</p>
+  <p><strong>Size:</strong> {{ land.size }} acres</p>
+  <p><strong>Description:</strong> {{ land.description }}</p>
+  {% if land.photos %}
+    <img src="{{ land.photos.url }}" alt="{{ land.location }} Photo" width="200">
+  {% else %}
+    No photos available.
+  {% endif %}
+  <a href="{% url 'land:list' %}">Back to List</a>
+{% endblock %}
+

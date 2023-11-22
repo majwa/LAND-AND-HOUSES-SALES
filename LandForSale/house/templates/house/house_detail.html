@@ -1,0 +1,22 @@
+<!-- house/templates/house/house_detail.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}House Details{% endblock %}
+
+{% block header %}House Details{% endblock %}
+
+{% block content %}
+  <h2>{{ house.location }} Details</h2>
+  <p><strong>Location:</strong> {{ house.location }}</p>
+  <p><strong>Price:</strong> ${{ house.price }}</p>
+  <p><strong>Bedrooms:</strong> {{ house.bedrooms }}</p>
+  <p><strong>Bathrooms:</strong> {{ house.bathrooms }}</p>
+  {% if house.photos %}
+    <img src="{{ house.photos.url }}" alt="{{ house.location }} Photo" width="200">
+  {% else %}
+    No photos available.
+  {% endif %}
+  <a href="{% url 'house:list' %}">Back to List</a>
+{% endblock %}
+

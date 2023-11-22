@@ -1,0 +1,25 @@
+<!-- house/templates/house/house_search_results.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Land Search Results{% endblock %}
+
+{% block header %}Land Search Results{% endblock %}
+
+{% block content %}
+  <h2>Search Results</h2>
+  {% if lands %}
+    <ul>
+      {% for land in lands %}
+        <li>
+          <strong>{{ land.location }}</strong><br>
+          Price: ${{ land.price }}<br>
+          <!-- Display other details as needed -->
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No results found.</p>
+  {% endif %}
+  <a href="{% url 'house:search' %}">Back to Search</a>
+{% endblock %}

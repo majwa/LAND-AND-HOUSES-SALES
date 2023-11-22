@@ -1,0 +1,49 @@
+<!-- house/templates/house/house_list.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>House List</h2>
+
+    <!-- Bootstrap Search Form -->
+    <form method="get" action="{% url 'house:search' %}" class="mb-3">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="id_location" class="form-label">Location</label>
+                <input type="text" name="location" class="form-control" id="id_location" placeholder="Enter location">
+            </div>
+            <div class="col-md-4">
+                <label for="id_min_price" class="form-label">Min Price</label>
+                <input type="number" name="min_price" class="form-control" id="id_min_price" placeholder="Enter min price">
+            </div>
+            <div class="col-md-4">
+                <label for="id_max_price" class="form-label">Max Price</label>
+                <input type="number" name="max_price" class="form-control" id="id_max_price" placeholder="Enter max price">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Search</button>
+    </form>
+
+    <!-- Display House List -->
+    <ul>
+        <div class="row">
+            {% for house in houses %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ house.photo.url }}" class="card-img-top" alt="{{ house.location }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ house.location }}</h5>
+                            <p class="card-text">
+                                Bedrooms: {{ house.bedrooms }}<br>
+                                Bathrooms: {{ house.bathrooms }}<br>
+                                Price: ${{ house.price }}
+                            </p>
+                            <a href="#"class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </ul>
+{% endblock %}
+

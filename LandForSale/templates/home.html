@@ -1,0 +1,34 @@
+<!-- templates/home.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Top 3 Latest Houses and Lands</h2>
+
+    <h3>Latest Houses</h3>
+    <ul>
+        {% for house in latest_houses %}
+        <div class="property">
+            <img src="{{ house.photo.url }}" alt="{{ house.location }}">
+            <p>Location: {{ house.location }}</p>
+            <p>Bedrooms: {{ house.bedrooms }}</p>
+            <p>Bathrooms: {{ house.bathrooms }}</p>
+            <p>Price: ${{ house.price }}</p>
+            <!-- Add other details as needed -->
+        </div>
+        {% endfor %}
+    </ul>
+
+    <h3>Latest Lands</h3>
+    <ul>
+        {% for land in latest_lands %}
+        <div class="property">
+            <img src="{{ land.photo.url }}" alt="{{ land.location }}">
+            <p>Location: {{ land.location }}</p>
+            <p>Size: {{ land.size }} sqm</p>
+            <p>Price: ${{ land.price }}</p>
+            <!-- Add other details as needed -->
+        </div>
+        {% endfor %}
+    </ul>
+{% endblock %}

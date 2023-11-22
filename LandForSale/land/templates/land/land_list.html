@@ -1,0 +1,51 @@
+<!-- land/templates/land/land_list.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Land List</h2>
+
+    <!-- Bootstrap Search Form -->
+    <form method="get" action="{% url 'land:search' %}" class="mb-3">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="id_location" class="form-label">Location</label>
+                <input type="text" name="location" class="form-control" id="id_location" placeholder="Enter location">
+            </div>
+            <div class="col-md-4">
+                <label for="id_min_price" class="form-label">Min Price</label>
+                <input type="number" name="min_price" class="form-control" id="id_min_price" placeholder="Enter min price">
+            </div>
+            <div class="col-md-4">
+                <label for="id_max_price" class="form-label">Max Price</label>
+                <input type="number" name="max_price" class="form-control" id="id_max_price" placeholder="Enter max price">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Search</button>
+    </form>
+
+    <!-- Display Land List -->
+
+        <h1>List of Lands for Sale</h1>
+    
+        <div class="row">
+            {% for land in lands %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ land.photo.url }}" class="card-img-top" alt="{{ land.location }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ land.location }}</h5>
+                            <p class="card-text">
+                                Size: {{ land.size }} sqm<br>
+                                Price: ${{ land.price }}
+                            </p>
+                            <a href="#" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+   
+    
+{% endblock %}
+
